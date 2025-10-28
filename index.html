@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TastyBite Restaurant</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === CART STYLES === */
+    .cart-container {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background: #fff;
+      border: 2px solid #ff4d4d;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 15px;
+      z-index: 1000;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .cart-container h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ff4d4d;
+    }
+
+    .cart-items p {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      font-size: 14px;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 5px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .checkout-btn {
+      background: #ff4d4d;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .checkout-btn:hover {
+      background: #ff1a1a;
+    }
+
+    .add-cart-btn {
+      background: #ff4d4d;
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .add-cart-btn:hover {
+      background: #ff1a1a;
+    }
+
+    .remove-btn {
+      background: none;
+      color: #ff4d4d;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Keep cart fixed above footer */
+    footer {
+      margin-top: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">TastyBite</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Delicious Food, Delivered Fresh</h2>
+      <p>Enjoy your favorite meals from the comfort of your home.</p>
+      <a href="#menu" class="btn">Explore Menu</a>
+    </div>
+  </section>
+  
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu">
+    <h2>Our Menu</h2>
+
+    <!-- Burger Section -->
+    <h3>Burgers</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/burger cheese.png" alt="Cheese Burger">
+        <h4>Cheese Burger</h4>
+        <p>Juicy beef patty with melted cheese and fresh veggies.</p>
+        <span>₹150</span>
+        <button class="add-cart-btn" data-name="Cheese Burger" data-price="150">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/chicken burger.png" alt="Chicken Burger">
+        <h4>Chicken Burger</h4>
+        <p>Grilled chicken patty with crispy lettuce and spicy mayo.</p>
+        <span>₹170</span>
+        <button class="add-cart-btn" data-name="Chicken Burger" data-price="170">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/veggie burger.png" alt="Veggie Burger">
+        <h4>Veggie Delight Burger</h4>
+        <p>Loaded with fresh vegetables and a creamy cheese layer.</p>
+        <span>₹130</span>
+        <button class="add-cart-btn" data-name="Veggie Delight Burger" data-price="130">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Pizza Section -->
+    <h3>Pizzas</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/italian.jpeg" alt="Italian Pizza">
+        <h4>Italian Pizza</h4>
+        <p>Classic thin-crust pizza with mozzarella and basil.</p>
+        <span>₹250</span>
+        <button class="add-cart-btn" data-name="Italian Pizza" data-price="250">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/pepeeroni.jpeg" alt="Pepperoni Pizza">
+        <h4>Pepperoni Pizza</h4>
+        <p>Loaded with pepperoni slices and rich tomato sauce.</p>
+        <span>₹280</span>
+        <button class="add-cart-btn" data-name="Pepperoni Pizza" data-price="280">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/supreme_pizza.jpeg" alt="Supreme Pizza">
+        <h4>Veg Supreme Pizza</h4>
+        <p>Fresh veggies, cheese, and olives for a perfect bite.</p>
+        <span>₹230</span>
+        <button class="add-cart-btn" data-name="Veg Supreme Pizza" data-price="230">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Pasta Section -->
+    <h3>Pasta</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/white pasta.png" alt="White Sauce Pasta">
+        <h4>White Sauce Pasta</h4>
+        <p>Creamy pasta tossed in rich white sauce.</p>
+        <span>₹200</span>
+        <button class="add-cart-btn" data-name="White Sauce Pasta" data-price="200">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/red_saucepasta.jpeg" alt="Red Sauce Pasta">
+        <h4>Red Sauce Pasta</h4>
+        <p>Tangy tomato-based pasta with herbs and cheese.</p>
+        <span>₹190</span>
+        <button class="add-cart-btn" data-name="Red Sauce Pasta" data-price="190">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Garlic Bread Section -->
+    <h3>Garlic Bread</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/garlicbread.jpeg" alt="Classic Garlic Bread">
+        <h4>Classic Garlic Bread</h4>
+        <p>Freshly baked bread topped with garlic butter.</p>
+        <span>₹120</span>
+        <button class="add-cart-btn" data-name="Classic Garlic Bread" data-price="120">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/cheese_garlic.jpeg" alt="Cheese Garlic Bread">
+        <h4>Cheesy Garlic Bread</h4>
+        <p>Toasted garlic bread topped with melted mozzarella cheese.</p>
+        <span>₹150</span>
+        <button class="add-cart-btn" data-name="Cheesy Garlic Bread" data-price="150">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/stuyffed.jpeg" alt="Stuffed Garlic Bread">
+        <h4>Stuffed Garlic Bread</h4>
+        <p>Soft bread stuffed with corn, cheese, and herbs.</p>
+        <span>₹170</span>
+        <button class="add-cart-btn" data-name="Stuffed Garlic Bread" data-price="170">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Fries Section -->
+    <h3>Fries</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/fries.jpeg" alt="Classic Fries">
+        <h4>Classic Fries</h4>
+        <p>Golden crispy fries with a pinch of salt.</p>
+        <span>₹100</span>
+        <button class="add-cart-btn" data-name="Classic Fries" data-price="100">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/peri_fries.jpeg" alt="Peri Peri Fries">
+        <h4>Peri-Peri Fries</h4>
+        <p>Spicy and flavorful fries seasoned with peri-peri masala.</p>
+        <span>₹120</span>
+        <button class="add-cart-btn" data-name="Peri-Peri Fries" data-price="120">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Combo Section -->
+    <h3>Combo</h3>
+    <div class="menu-items">
+      <div class="item">
+        <img src="image/burger_combo.jpeg" alt="Burger Combo">
+        <h4>Burger Combo</h4>
+        <p>1 Cheese Burger + Fries + Coke — the perfect meal deal!</p>
+        <span>₹250</span>
+        <button class="add-cart-btn" data-name="Burger Combo" data-price="250">Add to Cart</button>
+      </div>
+
+      <div class="item">
+        <img src="image/pizza_combo.jpeg" alt="Pizza Combo">
+        <h4>Pizza Combo</h4>
+        <p>1 Italian Pizza + Garlic Bread — ideal for sharing.</p>
+        <span>₹380</span>
+        <button class="add-cart-btn" data-name="Pizza Combo" data-price="380">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <div class="cart-container" id="cart">
+    <h3>Your Cart</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <p class="cart-total" id="cart-total">Total: ₹0</p>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>
+      Welcome to TastyBite, your go-to place for delicious meals made with love.
+      Our chefs use the freshest ingredients to serve dishes that make you smile.
+      Whether it’s a cheesy pizza, a juicy burger, or crispy fries — we’ve got something for everyone!
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@tastybite.com</p>
+    <p>Phone: +91 98765 43210</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 TastyBite Restaurant | All Rights Reserved</p>
+  </footer>
+
+  <!-- Cart JavaScript -->
+  <script>
+    const cart = [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+
+    document.querySelectorAll(".add-cart-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = parseInt(button.dataset.price);
+        cart.push({ name, price });
+        updateCart();
+      });
+    });
+
+    function updateCart() {
+      cartItemsContainer.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const p = document.createElement("p");
+        p.innerHTML = `
+          ${item.name} 
+          <span>₹${item.price} 
+          <button class="remove-btn" onclick="removeItem(${index})">✖</button></span>
+        `;
+        cartItemsContainer.appendChild(p);
+      });
+
+      cartTotal.textContent = `Total: ₹${total}`;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+  </script>
+</body>
+</html>
